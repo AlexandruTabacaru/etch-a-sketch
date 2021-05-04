@@ -1,0 +1,37 @@
+body{
+    background-image: url("https://sothebys-com.brightspotcdn.com/dims4/default/aeb0f39/2147483647/strip/true/crop/1904x1315+0+0/resize/684x472!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fdotcom%2Fb9%2F5f%2Fd4b55ee64cadb1a43165305c2990%2F068hk0732-9fcmh.jpg");
+}
+
+
+
+#upperdiv{
+    width: 400px;;
+    text-align: center;
+    display:inline;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+#title{
+    color:coral
+}
+#subtitle{
+    color:rgb(22, 133, 77)
+}
+.grid-row{
+    position: relative;
+    left:42%;
+    
+    line-height: 0;
+}
+.container{
+    position: absolute;
+}
+.cell{
+    border:1px solid rgb(11, 196, 88);
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    z-index: 5;
+    position:relative;
+    right:60px;
+}
