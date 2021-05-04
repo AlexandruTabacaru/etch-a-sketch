@@ -6,7 +6,7 @@ const erase=document.getElementById('erase');
 const rainbow=document.getElementById('random');
 const slider = document.querySelector('#slider')
 const screenVal = document.querySelector('.value');
-initialSketch();
+//initialSketch();
 function initialSketch(){
     makeRow(16);
     makeCol(16);
@@ -14,6 +14,10 @@ function initialSketch(){
 function makeRow(rowNum){
     for(let r=0;r<rowNum;r++){
         let row=document.createElement('div');
+        let height=parseInt(container.style.width)/parseInt(rowNum);
+        row.style.height=`${height}px`;
+        
+        //console.log(row.style.height);
         container.appendChild(row).className="grid-row";
     }
 }
@@ -21,11 +25,26 @@ function makeCol(cellNum){
     for(let i=0;i<gridRow.length;i++){
         for(let j=0;j<cellNum;j++){
             var cell=document.createElement('div');
-            cell.style.width=container.style.width/cellNum;
+            let height=parseInt(container.style.width)/parseInt(cellNum);
+        
+        cell.style.height=`${height}px`;
+        cell.style.width=`${height}px`;
+        //console.log(cell.style);
             gridRow[j].appendChild(cell).className="cell";
         }
        
     }
+}
+makeRow(12);
+makeCol(12);
+
+function getRandomColor(){
+    var letters="0123456789ABCDEF";
+    var color='#';
+    for(let i=0;i<6;i++){
+        color+=letters[Math.floor(Math.random()*16)];
+    }
+    return color;
 }
 let modifiable=Array.from(cells);
 console.log(modifiable)
@@ -44,29 +63,13 @@ function eraser(){
         }));
     
 }   
-function removeAllChildNodes(parent){
-    while(parent.firstChild){
-        parent.removeChild(parent.firstChild);
-    }
-}
 function clearCells(){
     modifiable.forEach(element => 
          element.style.backgroundColor=""
         )
 };
 
-function getRandomColor(){
-    var letters="0123456789ABCDEF";
-    var color='#';
-    for(let i=0;i<6;i++){
-        color+=letters[Math.floor(Math.random()*16)];
-    }
-    return color;
-}
 
-
-
- 
 rainbow.addEventListener('click', rainbowizer)  
 clear.addEventListener('click', clearCells);
 erase.addEventListener('click', eraser);
