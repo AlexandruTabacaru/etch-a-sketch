@@ -6,7 +6,7 @@ const erase=document.getElementById('erase');
 const rainbow=document.getElementById('random');
 const slider = document.querySelector('#slider')
 const screenVal = document.querySelector('.value');
-//initialSketch();
+initialSketch();
 function initialSketch(){
     makeRow(16);
     makeCol(16);
@@ -25,19 +25,29 @@ function makeCol(cellNum){
     for(let i=0;i<gridRow.length;i++){
         for(let j=0;j<cellNum;j++){
             var cell=document.createElement('div');
-            let height=parseInt(container.style.width)/parseInt(cellNum);
+            let height=Math.floor(parseInt(container.style.width)/parseInt(cellNum));
         
-        cell.style.height=`${height}px`;
-        cell.style.width=`${height}px`;
+        cell.style.height=`${height-2}px`;
+        cell.style.width=`${height-2}px`;
         //console.log(cell.style);
             gridRow[j].appendChild(cell).className="cell";
         }
        
     }
 }
-makeRow(12);
-makeCol(12);
-
+function removeAllChildNodes(parent){
+    while(parent.firstChild){
+        parent.removeChild(parent.firstChild);
+    }
+}
+slider.addEventListener('input', function(){
+    let val = document.getElementById('slider').value;
+    screenVal.textContent = val;
+    removeAllChildNodes(container);
+    makeRow(val);
+    makeCol(val);
+    modifiable=Array.from(cells);
+})
 function getRandomColor(){
     var letters="0123456789ABCDEF";
     var color='#';
@@ -68,6 +78,7 @@ function clearCells(){
          element.style.backgroundColor=""
         )
 };
+
 
 
 rainbow.addEventListener('click', rainbowizer)  
