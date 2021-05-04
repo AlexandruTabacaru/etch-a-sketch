@@ -63,14 +63,7 @@ function getRandomColor(){
     }
     return color;
 }
-slider.addEventListener('input', function(){
-    let val = document.getElementById('slider').value;
-    screenVal.textContent = val;
-    removeAllChildNodes(container);
-    makeRow(val);
-    makeCol(val);
-    rainbowizer();
-})
+
 
 
  
